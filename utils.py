@@ -35,8 +35,14 @@ def integrate(function, lower, upper):
     Post: Returns an approximation of the integral from 'lower' to 'upper'
           of the specified 'function'.
     """
-    if function == 1:
-        return(1)
+    width = int(upper)-int(lower)
+    x = lower
+    heightlow = int(eval(function))
+    x = upper
+    heightupp = int(eval(function))
+    middle = (heightlow+heightupp)/2
+    return (width*middle)
+    
 
 
 
