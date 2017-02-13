@@ -7,16 +7,13 @@ import utils
 
 class TestUtils(unittest.TestCase):
     def test_fact(self):
-        # À compléter...
-        pass
+        self.assertEqual(utils.fact(3),6)
     
     def test_roots(self):
-        # À compléter...
-        pass
+        self.assertEqual(utils.roots(1,0,-4), (-2,2))
     
     def test_integrate(self):
-        # À compléter...
-        pass
+        self.assertEqual(utils.integrate(1,0,1), 1)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestUtils)
