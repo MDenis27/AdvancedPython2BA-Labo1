@@ -8,23 +8,35 @@ def fact(n):
     
     Pre: -
     Post: Returns the factorial of 'n'.
-    Throws: ValueError if n < 0
+    Throws: ValueError if n < 0.
     """
-    factorielle=1
-    for x in range(n):
-        factorielle*=n
-        n-=1
-    return factorielle
+    R= math.factorial(n)
+    return R
 
 def roots(a, b, c):
-    delta= (b**2-4*a*c)
-    if delta > 0:
-        return ((-b+math.sqrt(delta))/(2*a),(-b-math.sqrt(delta))/(2*a))
-    if delta == 0:
-        return (-b/(2*a))
-    if delta < 0:
-        return ()
-        
+    """Computes the roots of the ax^2 + bx + x = 0 polynomial.
+    
+    Pre: -
+    Post: Returns a tuple with zero, one or two elements corresponding
+          to the roots of the ax^2 + bx + c polynomial.
+    """
+    if a==0 and b==0:
+        return None
+    
+    if a==0:
+        RS= -c/b
+        return (RS)
+    
+    D = b**2 - 4*a*c
+    if D < 0:
+        return None
+    elif D == 0:
+        R0 = (-b)/(2*a)
+        return R0
+    else:
+        R1= (-b - math.sqrt(D))/(2*a)
+        R2= (-b + math.sqrt(D))/(2*a)
+        return (R1, R2)
 
 def integrate(function, lower, upper):
     """Approximates the integral of a fonction between two bounds
@@ -35,19 +47,17 @@ def integrate(function, lower, upper):
     Post: Returns an approximation of the integral from 'lower' to 'upper'
           of the specified 'function'.
     """
-    width = int(upper)-int(lower)
-    x = lower
-    heightlow = int(eval(function))
-    x = upper
-    heightupp = int(eval(function))
-    middle = (heightlow+heightupp)/2
-    return (width*middle)
-    
+    steps= 5000
+    h= (upper-lower)/steps
+    x= lower
 
-
+    integral= 0
+    while x < upper:
+        integral+= eval(function)*h
+        x+= h
+    return integral
 
 if __name__ == '__main__':
     print(fact(5))
-    print(roots(1, 0, 1))
+    print(roots(0, -4, 20))
     print(integrate('x ** 2 - 1', -1, 1))
-
